@@ -107,7 +107,7 @@ class SortingRobot:
         8. He goes left until he isn't able to do and swaps his item with None
         9. Now the lowest item of the list is at position 0
         10. The robot now goes one index over and picks the item there and repeats the steps 3-6
-        11. Now the robot goes left and compares the item he holds with the items on the positions till there is the position with None
+        11. Now the robot goes left till there is the position with None
         12. There he puts the item he holds 
         13. This process runs till the Robot goes through the list without swapping once
         14. If the Robot did this the light turns off and the while loop ends
@@ -116,6 +116,23 @@ class SortingRobot:
         # Fill this out
         self.set_light_on()
         while self.light_is_on():
+
+            self.swap_item()
+
+            while self.can_move_right() == True:
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.swap_item()
+
+            while self.can_move_left() == True and self.compare_item() != None:
+                self.move_left()
+
+            self.swap_item()
+
+            if self.can_move_right() == True:
+                self.move_right()
+            else: 
+                self.set_light_off()
 
 
 if __name__ == "__main__":
